@@ -2,3 +2,19 @@
   width: 300px;
   height: 300px;
 }
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2.5rem;
+}
+
+.test {
+  background-color: green;
+  padding: 10px 15px;
+  margin: 10px 0;
+  display: inline-block;
+  color: white;
+  border-radius: 5px;
+  border: 2px green;
+}

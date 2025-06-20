@@ -1,0 +1,33 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.test {
+  border-radius: 10px;
+}
+
+[data-title] {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 0 0 8px 0;
+  color: red;
+}
+
+[data-content] {
+  color: #555;
+  margin-top: 8px;
+  color: green;
+}
+
+[data-button] {
+  background-color: blue;
+  padding: 10px 15px;
+  margin: 10px 0;
+  display: inline-block;
+  color: white;
+  border-radius: 5px;
+  border: 2px blue;
+}

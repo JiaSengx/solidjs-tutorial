@@ -13,7 +13,28 @@ const App: Component = () => {
 
       <img src={logo} alt="My Logo" class={style.logo} />
 
-      <Card></Card>
+      <section class={style.cardContainer}>
+        {/* <Card title="t1"></Card> */}
+        <Card title="t2" rounded={true}>
+          <h2>projection content</h2>
+          <p>info content</p>
+
+          <p data-title>This is title</p>
+          <p data-content>This is content</p>
+          <button class={style.test} data-button>
+            Click
+          </button>
+        </Card>
+
+        <Card title="t3" rounded={false}>
+          <h2>projection content</h2>
+          <p>info content</p>
+
+          <p data-title>This is title</p>
+          <p data-content>This is content</p>
+          <button data-button>Click</button>
+        </Card>
+      </section>
     </div>
   );
 };
