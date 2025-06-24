@@ -1,40 +1,32 @@
-import type { Component } from 'solid-js';
-import { Card } from './shared/components';
+import { createSignal, type Component } from 'solid-js';
 
 import logo from './assets/logo.svg';
 import style from './App.module.css';
 
 const App: Component = () => {
+  const [isDarkTheme, setIsDarkTheme] = createSignal(false);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(prev => !prev);
+  };
+
   return (
     <div>
-      <header>
+      <header
+        classList={{
+          [style.darkTheme]: isDarkTheme(),
+        }}>
+        <span onClick={toggleTheme}>change theme</span>
+
+        <nav class={style.nav}>
+          <a href="/">Home</a>
+          <a href="/cart">Cart</a>
+        </nav>
+
         <h1>Ninja March</h1>
       </header>
 
       <img src={logo} alt="My Logo" class={style.logo} />
-
-      <section class={style.cardContainer}>
-        {/* <Card title="t1"></Card> */}
-        <Card title="t2" rounded={true}>
-          <h2>projection content</h2>
-          <p>info content</p>
-
-          <p data-title>This is title</p>
-          <p data-content>This is content</p>
-          <button class={style.test} data-button>
-            Click
-          </button>
-        </Card>
-
-        <Card title="t3" rounded={false}>
-          <h2>projection content</h2>
-          <p>info content</p>
-
-          <p data-title>This is title</p>
-          <p data-content>This is content</p>
-          <button data-button>Click</button>
-        </Card>
-      </section>
     </div>
   );
 };
