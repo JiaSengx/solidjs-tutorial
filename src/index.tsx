@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import { Route, Router } from '@solidjs/router';
 import { Home, Cart, Product } from './pages';
+import { CartContextProvider } from './Context';
 
 const root = document.getElementById('root');
 
@@ -17,13 +18,15 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 render(
   () => (
     <div>
-      <App></App>
+      <CartContextProvider>
+        <App></App>
 
-      <Router>
-        <Route path="/" component={Home}></Route>
-        <Route path="/cart" component={Cart}></Route>
-        <Route path="/product/:id" component={Product}></Route>
-      </Router>
+        <Router>
+          <Route path="/" component={Home}></Route>
+          <Route path="/cart" component={Cart}></Route>
+          <Route path="/product/:id" component={Product}></Route>
+        </Router>
+      </CartContextProvider>
     </div>
   ),
   root!,
