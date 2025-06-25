@@ -2,6 +2,7 @@ import { createSignal, type Component } from 'solid-js';
 
 import logo from './assets/logo.svg';
 import style from './App.module.css';
+import { useCart } from './Context';
 
 const App: Component = () => {
   const [isDarkTheme, setIsDarkTheme] = createSignal(false);
@@ -9,6 +10,10 @@ const App: Component = () => {
   const toggleTheme = () => {
     setIsDarkTheme(prev => !prev);
   };
+
+  const { items } = useCart();
+
+  const quantity = () => items.reduce((acc, cur) => acc + cur.quantity, 0);
 
   return (
     <div>
@@ -20,7 +25,7 @@ const App: Component = () => {
 
         <nav class={style.nav}>
           <a href="/">Home</a>
-          <a href="/cart">Cart</a>
+          <a href="/cart">Cart ({quantity()})</a>
         </nav>
 
         <h1>Ninja March</h1>

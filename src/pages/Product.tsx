@@ -1,5 +1,5 @@
 import { useParams } from '@solidjs/router';
-import { createResource, Show } from 'solid-js';
+import { createResource, createSignal, Show } from 'solid-js';
 import { useCart } from '../Context';
 
 const fetchProduct = (id: string) =>
@@ -15,7 +15,14 @@ export const Product = () => {
 
   const { items, setItems } = useCart();
 
+  const [adding, setAdding] = createSignal(false);
+
   const addproduct = () => {
+    setAdding(true);
+    setTimeout(() => {
+      setAdding(false);
+    }, 2000);
+
     const exists = items.find(p => p.id === product()?.id);
 
     setItems(prev =>
@@ -33,7 +40,13 @@ export const Product = () => {
         <p>Product Detail - {product()?.description}</p>
         <p>Price - {product()?.price}</p>
 
-        <button onclick={addproduct}>Add to Cart</button>
+        <button onclick={addproduct} disabled={adding()}>
+          Add to Cart
+        </button>
+      </Show>
+
+      <Show when={adding()}>
+        <div>{product()?.title} was added to the cart</div>
       </Show>
     </div>
   );

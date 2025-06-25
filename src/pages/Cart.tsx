@@ -3,7 +3,9 @@ import { Card } from '../shared/components';
 import { useCart } from '../Context';
 
 export const Cart = () => {
-  const { items, setItems } = useCart();
+  const { items } = useCart();
+
+  const total = () => items.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
 
   return (
     <div>
@@ -17,6 +19,8 @@ export const Cart = () => {
             </p>
           )}
         </For>
+
+        <p>Total cart price - {total()}</p>
       </Card>
     </div>
   );

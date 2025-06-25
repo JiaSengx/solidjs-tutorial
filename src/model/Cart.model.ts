@@ -1,4 +1,7 @@
-
+export interface CartContextType {
+    items: CartModelType[];
+    setItems: (value: CartModelType[] | ((prev: CartModelType[]) => CartModelType[])) => void;
+}
 
 
 export type CartModelType = {
