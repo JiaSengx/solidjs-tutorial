@@ -1,5 +1,6 @@
 import { useParams } from '@solidjs/router';
 import { createResource, Show } from 'solid-js';
+import { useCart } from '../Context';
 
 const fetchProduct = (id: string) =>
   createResource(async (): Promise<Product> => {
@@ -12,6 +13,18 @@ export const Product = () => {
   const params = useParams<{ id: string }>();
   const [product] = fetchProduct(params.id);
 
+  const { items, setItems } = useCart();
+
+  const addproduct = () => {
+    const exists = items.find(p => p.id === product()?.id);
+
+    setItems(prev =>
+      exists
+        ? prev.map(p => (p.id === product()?.id ? { ...p, quantity: p.quantity + 1 } : p))
+        : [...items, { ...product()!, quantity: 1 }],
+    );
+  };
+
   return (
     <div>
       <Show when={product()} fallback={<p>Loading...</p>}>
@@ -19,6 +32,8 @@ export const Product = () => {
         <p>Product - {product()?.title}</p>
         <p>Product Detail - {product()?.description}</p>
         <p>Price - {product()?.price}</p>
+
+        <button onclick={addproduct}>Add to Cart</button>
       </Show>
     </div>
   );
